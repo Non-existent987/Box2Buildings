@@ -7,6 +7,7 @@
 
 
 # 目前正在重写项目，使用django+vue3
-> 模型使用PyTorch,数据集搭嘎有8千多张图片和标注
+> 模型使用PyTorch,数据集有8千多张图片和标注
 
-![alt text](image.png)
+![alt text](docs/images/image.png)
+git status
