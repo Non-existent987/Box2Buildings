@@ -1,5 +1,35 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import axios from 'axios';
+import { ref } from 'vue';
+// 数据属性被转换为引用
+const backendMessage = ref(''); // 用于存储从后端获取的消息
+const errorMessage = ref('');  // 用于存储请求错误信息
+// 方法被转换为函数
+const fetchData = async () => {
+  // 清空之前的消息和错误
+  backendMessage.value = '正在加载中......';
+  errorMessage.value = '';
+  try {
+    // 发起 get 请求到后端
+    const response = await axios.get('http://localhost:8000/hello/');
+    backendMessage.value = response.data.message;
+    console.error('获取数据成功：');
+  } catch (error) {
+    console.error('获取数据失败：', error);
+    backendMessage.value = '获取数据失败。';
+    if (error.response) {
+      // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+      errorMessage.value = `服务器错误: ${error.response.status} - ${error.response.data?.message || error.response.statusText}`;
+    } else if (error.request) {
+      // 请求已发出，但没有收到响应
+      errorMessage.value = '网络错误: 未收到服务器响应。请检查后端是否运行或网络连接。';
+    } else {
+      // 在设置请求时发生了一些事情，触发了一个错误
+      errorMessage.value = `请求配置错误: ${error.message}`;
+    }
+  }
+};
 </script>
 
 <template>
@@ -21,6 +51,15 @@ import HelloWorld from './components/HelloWorld.vue'
           <option value="street">街道图</option>
         </select>
       </div>
+      <!-- 测试下按钮和后端联系：开始 -->
+      <button @click="fetchData">点我测试</button>
+      <p v-if="backendMessage">
+        <strong>后端消息:</strong> {{ backendMessage }}
+      </p>
+      <p v-if="errorMessage" style="color:red;">
+        <strong>错误信息:</strong> {{ errorMessage }}
+      </p>
+      <!-- 测试下按钮和后端联系：结束 -->
     </div>
     <!-- 主显示区域 -->
     <div class="main-content" >

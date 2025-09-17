@@ -10,4 +10,3 @@
 > 模型使用PyTorch,数据集有8千多张图片和标注
 
 ![alt text](docs/images/image.png)
-git status

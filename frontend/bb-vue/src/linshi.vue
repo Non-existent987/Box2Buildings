@@ -6,7 +6,8 @@
     <button 
       <!-- 3. 基础 CSS 类名，定义按钮的默认样式 -->
       class="sidebar-button"
-      <!-- 4. 动态类绑定：当 selectedMode === 'point' 时添加 active 类 -->
+      <!-- 4. 动态类绑定：当 selectedMode === 'point' 时添加 
+       active 类 -->
       <!-- 关联 script：读取 data() 中的 selectedMode 变量进行比较 -->
       :class="{ active: selectedMode === 'point' }"
       <!-- 5. 点击事件：调用 selectMode 方法并传入参数 'point' -->
