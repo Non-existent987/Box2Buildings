@@ -23,14 +23,6 @@ a:hover {
   color: #535bf2; /* 鼠标悬停时链接颜色变为更深的蓝色 */
 }
 /* Body 布局 - 使用 Flexbox 创建居中布局，适配移动端 */
-body {
-  margin: 0; /* 移除 body 默认外边距 */
-  display: flex; /* 设置 body 为弹性布局 */
-  place-items: center; /* 在主轴和交叉轴上都居中对齐内容 */
-  min-width: 320px; /* 设置最小宽度为 320px，确保在小屏幕上的可用性 */
-  min-height: 100vh; /* 设置最小高度为视口高度，确保全屏显示 */
-}
-
 h1 {
   font-size: 3.2em; /* 设置 h1 标题字体大小为 3.2 倍基准大小 */
   line-height: 1.1; /* 设置 h1 行高为 1.1 倍，比默认行高更紧凑 */
@@ -58,12 +50,14 @@ button:focus-visible {
 .card {
   padding: 2em; /* 设置卡片容器的内边距为 2em */
 }
-
+html,
+body,
 #app {
-  max-width: 1280px; /* 设置应用容器最大宽度为 1280px */
-  margin: 0 auto; /* 水平居中对齐容器 */
-  padding: 2rem; /* 设置容器内边距为 2rem */
-  text-align: center; /* 设置容器内文本居中对齐 */
+ height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars on the body */
 }
 
 /* 浅色模式的媒体查询 */
